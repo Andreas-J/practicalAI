@@ -1,0 +1,52 @@
+,key_0,key_0_x,State_x,Participation_x,Composite,State_y,Participation_y,Total,key_0_y,act_state,act_participation,act_english,act_math,act_reading,act_science,act_composite,sat_state,sat_participation,sat_read_write,sat_math,sat_total
+0,Alabama,Alabama,Alabama,100,19.1,Alabama,5,1169,Alabama,Alabama,100,18.9,18.4,19.7,19.4,19.2,Alabama,5,593,572,1165
+1,Alaska,Arkansas,Arkansas,100,19.4,Alaska,33,1080,Alaska,Alaska,65,18.7,19.8,20.4,19.9,19.8,Alaska,38,547,533,1080
+2,Arizona,Kentucky,Kentucky,100,20.2,Arizona,53,1116,Arizona,Arizona,62,18.6,19.8,20.1,19.8,19.7,Arizona,30,563,553,1116
+3,Arkansas,Louisiana,Louisiana,100,19.2,Arkansas,94,1208,Arkansas,Arkansas,100,18.9,19.0,19.7,19.5,19.4,Arkansas,3,614,594,1208
+4,California,Mississippi,Mississippi,100,18.6,California,60,1076,California,California,31,22.5,22.7,23.1,22.2,22.8,California,53,531,524,1055
+5,Colorado,Missouri,Missouri,100,20.0,Colorado,100,1025,Colorado,Colorado,100,20.1,20.3,21.2,20.9,20.8,Colorado,11,606,595,1201
+6,Connecticut,Montana,Montana,100,20.0,Connecticut,100,1053,Connecticut,Connecticut,31,25.5,24.6,25.6,24.6,25.2,Connecticut,100,530,512,1041
+7,Delaware,Nebraska,Nebraska,100,20.1,Delaware,100,998,Delaware,Delaware,18,24.1,23.4,24.8,23.6,24.1,Delaware,100,503,492,996
+8,District of Columbia,Nevada,Nevada,100,17.7,District of Columbia,92,977,District of Columbia,District of Columbia,32,24.4,23.5,24.9,23.5,24.2,District of Columbia,100,482,468,950
+9,Florida,North Carolina,North Carolina,100,19.1,Florida,97,1014,Florida,Florida,73,19.0,19.4,21.0,19.4,19.8,Florida,83,520,497,1017
+10,Georgia,Ohio,Ohio,100,20.3,Georgia,70,1064,Georgia,Georgia,55,21.0,20.9,22.0,21.3,21.4,Georgia,61,535,515,1050
+11,Hawaii,Oklahoma,Oklahoma,100,19.3,Hawaii,56,1099,Hawaii,Hawaii,90,17.8,19.2,19.2,19.3,19.0,Hawaii,55,544,541,1085
+12,Idaho,South Carolina,South Carolina,100,18.3,Idaho,100,1001,Idaho,Idaho,38,21.9,21.8,23.0,22.1,22.3,Idaho,93,513,493,1005
+13,Illinois,Tennessee,Tennessee,100,19.6,Illinois,99,1019,Illinois,Illinois,93,21.0,21.2,21.6,21.3,21.4,Illinois,9,559,556,1115
+14,Indiana,Utah,Utah,100,20.4,Indiana,67,1086,Indiana,Indiana,35,22.0,22.4,23.2,22.3,22.6,Indiana,63,542,532,1074
+15,Iowa,Wisconsin,Wisconsin,100,20.5,Iowa,3,1265,Iowa,Iowa,67,21.2,21.3,22.6,22.1,21.9,Iowa,2,641,635,1275
+16,Kansas,Wyoming,Wyoming,100,20.0,Kansas,4,1265,Kansas,Kansas,73,21.1,21.3,22.3,21.7,21.7,Kansas,4,632,628,1260
+17,Kentucky,Minnesota,Minnesota,99,21.3,Kentucky,4,1248,Kentucky,Kentucky,100,19.6,19.4,20.5,20.1,20.0,Kentucky,4,631,616,1247
+18,Louisiana,North Dakota,North Dakota,98,20.3,Louisiana,4,1210,Louisiana,Louisiana,100,19.4,18.8,19.8,19.6,19.5,Louisiana,4,611,586,1198
+19,Maine,Hawaii,Hawaii,89,18.9,Maine,99,1013,Maine,Maine,8,24.2,24.0,24.8,23.7,24.3,Maine,95,513,499,1012
+20,Maryland,South Dakota,South Dakota,77,21.9,Maryland,76,1080,Maryland,Maryland,28,23.3,23.1,24.2,2.3,23.6,Maryland,69,536,52,1060
+21,Massachusetts,Kansas,Kansas,71,21.6,Massachusetts,80,1125,Massachusetts,Massachusetts,29,25.4,25.3,25.9,24.7,25.4,Massachusetts,76,555,551,1107
+22,Michigan,Iowa,Iowa,68,21.8,Michigan,100,1011,Michigan,Michigan,29,24.1,23.7,24.5,23.8,24.1,Michigan,100,509,495,1005
+23,Minnesota,New Mexico,New Mexico,67,19.4,Minnesota,4,1298,Minnesota,Minnesota,100,20.4,21.5,21.8,21.6,21.5,Minnesota,3,644,651,1295
+24,Mississippi,Arizona,Arizona,66,19.2,Mississippi,3,1236,Mississippi,Mississippi,100,18.2,18.1,18.8,18.8,18.6,Mississippi,2,634,607,1242
+25,Missouri,Florida,Florida,66,19.9,Missouri,4,1262,Missouri,Missouri,100,19.8,19.9,20.8,20.5,20.4,Missouri,3,640,631,1271
+26,Montana,West Virginia,West Virginia,65,20.3,Montana,10,1198,Montana,Montana,100,19.0,20.2,21.0,20.5,20.3,Montana,10,605,591,1196
+27,Nebraska,Georgia,Georgia,53,21.4,Nebraska,3,1252,Nebraska,Nebraska,84,20.9,20.9,21.9,21.5,21.4,Nebraska,3,629,625,1253
+28,Nevada,Illinois,Illinois,43,23.9,Nevada,23,1140,Nevada,Nevada,100,16.3,18.0,18.1,18.2,17.8,Nevada,26,563,553,1116
+29,New Hampshire,Oregon,Oregon,42,21.3,New Hampshire,96,1063,New Hampshire,New Hampshire,18,25.4,25.1,26.0,24.9,25.5,New Hampshire,96,532,520,1052
+30,New Jersey,Texas,Texas,41,20.6,New Jersey,82,1094,New Jersey,New Jersey,34,23.8,23.8,24.1,23.2,23.9,New Jersey,70,530,526,1056
+31,New Mexico,Idaho,Idaho,36,22.3,New Mexico,16,1093,New Mexico,New Mexico,66,18.6,19.4,20.4,20.0,19.7,New Mexico,11,577,561,1138
+32,New York,Alaska,Alaska,33,20.8,New York,79,1068,New York,New York,31,23.8,24.0,24.6,23.9,24.2,New York,67,528,523,1052
+33,North Carolina,District of Columbia,District of Columbia,32,23.6,North Carolina,52,1098,North Carolina,North Carolina,100,17.8,19.3,19.6,19.3,19.1,North Carolina,49,546,535,1081
+34,North Dakota,Indiana,Indiana,32,22.5,North Dakota,2,1283,North Dakota,North Dakota,98,19.0,20.4,20.5,20.6,20.3,North Dakota,2,635,621,1256
+35,Ohio,Maryland,Maryland,31,22.5,Ohio,18,1099,Ohio,Ohio,75,21.2,21.6,22.5,22.0,22.0,Ohio,12,578,570,1149
+36,Oklahoma,New Jersey,New Jersey,31,23.7,Oklahoma,8,1062,Oklahoma,Oklahoma,100,18.5,18.8,20.1,19.6,19.4,Oklahoma,7,530,517,1047
+37,Oregon,Colorado,Colorado,30,23.9,Oregon,48,1117,Oregon,Oregon,40,21.2,21.5,22.4,21.7,21.8,Oregon,43,560,548,1108
+38,Pennsylvania,California,California,27,22.7,Pennsylvania,70,1086,Pennsylvania,Pennsylvania,23,23.4,23.4,24.2,23.3,23.7,Pennsylvania,65,540,531,1071
+39,Rhode Island,New York,New York,27,24.5,Rhode Island,97,1018,Rhode Island,Rhode Island,21,24.0,23.3,24.7,23.4,24.0,Rhode Island,71,539,524,1062
+40,South Carolina,Connecticut,Connecticut,26,25.6,South Carolina,55,1070,South Carolina,South Carolina,100,17.5,18.6,19.1,18.9,18.7,South Carolina,50,543,521,1064
+41,South Dakota,Massachusetts,Massachusetts,25,25.5,South Dakota,3,1241,South Dakota,South Dakota,80,20.7,21.5,22.3,22.0,21.8,South Dakota,3,612,603,1216
+42,Tennessee,Vermont,Vermont,24,24.1,Tennessee,6,1231,Tennessee,Tennessee,100,19.5,19.2,20.1,19.9,19.8,Tennessee,5,623,604,1228
+43,Texas,Virginia,Virginia,24,23.9,Texas,66,1032,Texas,Texas,45,19.5,20.7,21.1,20.9,20.7,Texas,62,513,507,1020
+44,Utah,Washington,Washington,24,22.2,Utah,4,1230,Utah,Utah,100,19.5,19.9,20.8,20.6,20.3,Utah,3,624,614,1238
+45,Vermont,Michigan,Michigan,24,24.4,Vermont,64,1120,Vermont,Vermont,29,23.3,23.1,24.4,23.2,23.6,Vermont,60,562,551,1114
+46,Virginia,Pennsylvania,Pennsylvania,20,23.5,Virginia,68,1117,Virginia,Virginia,29,23.5,23.3,24.6,23.5,23.8,Virginia,65,561,541,1102
+47,Washington,Delaware,Delaware,17,23.8,Washington,69,1081,Washington,Washington,29,20.9,21.9,22.1,22.0,21.9,Washington,64,541,534,1075
+48,West Virginia,New Hampshire,New Hampshire,16,25.1,West Virginia,28,999,West Virginia,West Virginia,69,20.0,19.4,21.2,20.5,20.4,West Virginia,14,558,528,1086
+49,Wisconsin,Rhode Island,Rhode Island,15,24.2,Wisconsin,3,1294,Wisconsin,Wisconsin,100,19.7,20.4,20.6,20.9,20.5,Wisconsin,3,642,649,1291
+50,Wyoming,Maine,Maine,7,24.0,Wyoming,3,1257,Wyoming,Wyoming,100,19.4,19.8,20.8,20.6,20.2x,Wyoming,3,626,604,1230

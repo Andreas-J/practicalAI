@@ -1,0 +1,2181 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{starter-code}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Project 1: SAT \& ACT
+Analysis}\label{project-1-sat-act-analysis}
+
+    The first markdown cell in a notebook is a great place to provide an
+overview of your entire project. You will likely want to at least state
+your
+
+\subsection{Problem Statement}\label{problem-statement}
+
+    as well as an
+
+    \subsection{Executive Summary}\label{executive-summary}
+
+If you want to, it's great to use relative links to direct your audience
+to various sections of a notebook. \textbf{HERE'S A DEMONSTRATION WITH
+THE CURRENT SECTION HEADERS}:
+
+\subsubsection{Contents:}\label{contents}
+
+\begin{itemize}
+\tightlist
+\item
+  Section \ref{data-import-and-cleaning}
+\item
+  Section \ref{2018-data-import-and-cleaning}
+\item
+  Section \ref{exploratory-data-analysis}
+\item
+  Section \ref{visualize-the-data}
+\item
+  Section \ref{descriptive-and-inferential-statistics}
+\item
+  Section \ref{outside-research}
+\item
+  Section \ref{conclusions-and-recommendations}
+\end{itemize}
+
+    \textbf{If you combine your problem statement, executive summary, data
+dictionary, and conclusions/recommendations, you have an amazing
+README.md file that quickly aligns your audience to the contents of your
+project.} Don't forget to cite your data sources!
+
+    \emph{All libraries used should be added here}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}196}]:} \PY{c+c1}{\PYZsh{}Imports:}
+          \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{sample}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{as} \PY{n+nn}{stats}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{import} \PY{n}{load\PYZus{}iris}
+          \PY{c+c1}{\PYZsh{} import plotly }
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{dates} \PY{k}{as} \PY{n+nn}{dates}
+          \PY{k+kn}{import} \PY{n+nn}{datetime}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k}{import} \PY{n}{show}\PY{p}{,} \PY{n}{output\PYZus{}notebook}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{layouts} \PY{k}{import} \PY{n}{column}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{ColumnDataSource}\PY{p}{,} \PY{n}{RangeTool}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{figure}
+\end{Verbatim}
+
+
+    \subsection{2017 Data Import and
+Cleaning}\label{data-import-and-cleaning}
+
+    \paragraph{1. Read In SAT \& ACT Data}\label{read-in-sat-act-data}
+
+Read in the \texttt{sat\_2017.csv} and \texttt{act\_2017.csv} files and
+assign them to appropriately named pandas dataframes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}197}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n}{sat\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/sat\PYZus{}2017.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/act\PYZus{}2017.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{2. Display Data}\label{display-data}
+
+Print the first 10 rows of each dataframe to your jupyter notebook
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}198}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                  State Participation  Evidence-Based Reading and Writing  \textbackslash{}
+0               Alabama            5\%                                 593   
+1                Alaska           38\%                                 547   
+2               Arizona           30\%                                 563   
+3              Arkansas            3\%                                 614   
+4            California           53\%                                 531   
+5              Colorado           11\%                                 606   
+6           Connecticut          100\%                                 530   
+7              Delaware          100\%                                 503   
+8  District of Columbia          100\%                                 482   
+9               Florida           83\%                                 520   
+
+   Math  Total  
+0   572   1165  
+1   533   1080  
+2   553   1116  
+3   594   1208  
+4   524   1055  
+5   595   1201  
+6   512   1041  
+7   492    996  
+8   468    950  
+9   497   1017  
+                  State Participation  English  Math  Reading  Science  \textbackslash{}
+0              National           60\%     20.3  20.7     21.4     21.0   
+1               Alabama          100\%     18.9  18.4     19.7     19.4   
+2                Alaska           65\%     18.7  19.8     20.4     19.9   
+3               Arizona           62\%     18.6  19.8     20.1     19.8   
+4              Arkansas          100\%     18.9  19.0     19.7     19.5   
+5            California           31\%     22.5  22.7     23.1     22.2   
+6              Colorado          100\%     20.1  20.3     21.2     20.9   
+7           Connecticut           31\%     25.5  24.6     25.6     24.6   
+8              Delaware           18\%     24.1  23.4     24.8     23.6   
+9  District of Columbia           32\%     24.4  23.5     24.9     23.5   
+
+  Composite  
+0      21.0  
+1      19.2  
+2      19.8  
+3      19.7  
+4      19.4  
+5      22.8  
+6      20.8  
+7      25.2  
+8      24.1  
+9      24.2  
+
+    \end{Verbatim}
+
+    \paragraph{3. Verbally Describe Data}\label{verbally-describe-data}
+
+Take your time looking through the data and thoroughly describe the data
+in the markdown cell below.
+
+    Answer: One dataset displays the 2017 SAT state participation percentage
+rate, average 2017 SAT reading+writing scores, the average 2017 SAT math
+scores, and the total of the average 2017 SAT math \& reading+writing
+scores of students in each US state.
+
+The other dataset displays the 2017 ACT participation percentage rate,
+average 2017 ACT English scores, average 2017 ACT math scores, average
+2017 ACT reading scores, average 2017 ACT science scores, and the
+composite (average) of the 4 2017 ACT Sections
+(English+math+reading+science) of students in each US state.
+
+    \paragraph{4a. Does the data look
+complete?}\label{a.-does-the-data-look-complete}
+
+    Answer: The data does not look complete.
+
+    \paragraph{4b. Are there any obvious issues with the
+observations?}\label{b.-are-there-any-obvious-issues-with-the-observations}
+
+\textbf{What is the minimum \emph{possible} value for each test/subtest?
+What is the maximum \emph{possible} value?}
+
+Consider comparing any questionable values to the sources of your data:
+-
+\href{https://blog.collegevine.com/here-are-the-average-sat-scores-by-state/}{SAT}
+-
+\href{https://blog.prepscholar.com/act-scores-by-state-averages-highs-and-lows}{ACT}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}199}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Evidence\PYZhy{}Based Reading and Writing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+482
+52
+950
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}200}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{English}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reading}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Science}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Composite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+16.3
+18.0
+18.1
+2.3
+17.8
+
+    \end{Verbatim}
+
+    Answer: The obvious issues with the observations are the following: -
+the lowest average 2017 SAT math score in the nation (Maryland) is way
+too low (in comparison to all of the other states) and this observation
+is reinforced by its 472 deficit from reaching its reported total score
+of 1060. - the lowest average 2017 ACT science score in the nation (also
+Maryland) is way too low (in comparison to all of the other states) and
+this observation is reinforced by its 20.9 deficit from reaching its
+reported composite average score of 23.6.
+
+    \paragraph{4c. Fix any errors you
+identified}\label{c.-fix-any-errors-you-identified}
+
+\textbf{The data is available} so there's no need to guess or calculate
+anything. If you didn't find any errors, continue to the next step.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}201}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n}{sat\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Maryland}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{524}
+          \PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Science}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Maryland}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{23.2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/andresjimenez/anaconda3/lib/python3.6/site-packages/ipykernel\_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  
+/Users/andresjimenez/anaconda3/lib/python3.6/site-packages/ipykernel\_launcher.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  This is separate from the ipykernel package so we can avoid doing imports until
+
+    \end{Verbatim}
+
+    \paragraph{5. What are your data types?}\label{what-are-your-data-types}
+
+Display the data types of each feature.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}202}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+State                                 object
+Participation                         object
+Evidence-Based Reading and Writing     int64
+Math                                   int64
+Total                                  int64
+dtype: object
+
+
+State             object
+Participation     object
+English          float64
+Math             float64
+Reading          float64
+Science          float64
+Composite         object
+dtype: object
+
+    \end{Verbatim}
+
+    What did you learn? - Do any of them seem odd?\\
+- Which ones are not as they should be?
+
+    Answer: I learned that Participation for both SAT \& ACT are set as
+string objects (which I believe should be set as integers since they are
+interpreted as whole number percentages). I also learned that ACT
+Composite scores are also set as string objects (which I believe should
+be set as floats since they are interpreted as decimal numbers).
+
+    \paragraph{6. Fix Incorrect Data Types}\label{fix-incorrect-data-types}
+
+Based on what you discovered above, use appropriate methods to re-type
+incorrectly typed data. - Define a function that will allow you to
+convert participation rates to an appropriate numeric type. Use
+\texttt{map} or \texttt{apply} to change these columns in each
+dataframe.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}203}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{c+c1}{\PYZsh{} def rate\PYZus{}to\PYZus{}numeric(rate):}
+          \PY{c+c1}{\PYZsh{}     for i in rate[i]:}
+          \PY{c+c1}{\PYZsh{}         i = float(rate.strip(\PYZsq{}\PYZpc{}\PYZsq{}))/100}
+          \PY{c+c1}{\PYZsh{}         i+=1}
+          
+          \PY{c+c1}{\PYZsh{} rate\PYZus{}to\PYZus{}numeric(act\PYZus{}data[\PYZsq{}Composite\PYZsq{}])}
+          \PY{c+c1}{\PYZsh{} act\PYZus{}data[\PYZsq{}Composite\PYZsq{}] = act\PYZus{}data[\PYZsq{}Composite\PYZsq{}].apply(pd.to\PYZus{}numeric)}
+          \PY{c+c1}{\PYZsh{} sat\PYZus{}data[\PYZsq{}Participation\PYZsq{}] = sat\PYZus{}data[\PYZsq{}Participation\PYZsq{}].apply(pd.to\PYZus{}numeric)}
+          \PY{c+c1}{\PYZsh{} act\PYZus{}data[\PYZsq{}Participation\PYZsq{}] = act\PYZus{}data[\PYZsq{}Participation\PYZsq{}].apply(pd.to\PYZus{}numeric)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}204}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Composite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+object
+object
+
+    \end{Verbatim}
+
+    \begin{itemize}
+\tightlist
+\item
+  Fix any individual values preventing other columns from being the
+  appropriate type.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}205}]:} \PY{c+c1}{\PYZsh{}code}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Finish your data modifications by making sure the columns are now
+  typed appropriately.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}206}]:} \PY{c+c1}{\PYZsh{}code}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Display the data types again to confirm they are correct.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}207}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+State                                 object
+Participation                         object
+Evidence-Based Reading and Writing     int64
+Math                                   int64
+Total                                  int64
+dtype: object
+State             object
+Participation     object
+English          float64
+Math             float64
+Reading          float64
+Science          float64
+Composite         object
+dtype: object
+
+    \end{Verbatim}
+
+    \paragraph{7. Rename Columns}\label{rename-columns}
+
+Change the names of the columns to more expressive names so that you can
+tell the difference the SAT columns and the ACT columns. Your solution
+should map all column names being changed at once (no repeated singular
+name-changes). \textbf{We will be combining these data with some of the
+data from 2018, and so you should name columns in an appropriate way}.
+
+\textbf{Guidelines}: - Column names should be all lowercase (you will
+thank yourself when you start pushing data to SQL later in the course) -
+Column names should not contain spaces (underscores will suffice-\/-this
+allows for using the \texttt{df.column\_name} method to access columns
+in addition to
+\texttt{df{[}\textquotesingle{}column\_name\textquotesingle{}{]}}. -
+Column names should be unique and informative (the only feature that we
+actually share between dataframes is the state).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}208}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n}{sat\PYZus{}data} \PY{o}{=} \PY{n}{sat\PYZus{}data}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n+nb}{str}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sat\PYZus{}state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sat\PYZus{}participation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Evidence\PYZhy{}Based Reading and Writing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sat\PYZus{}read\PYZus{}write}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}  
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sat\PYZus{}math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sat\PYZus{}total}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n+nb}{str}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}participation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{English}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}english}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}math}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reading}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}reading}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Science}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}science}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Composite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}composite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{8. Create a data dictionary}\label{create-a-data-dictionary}
+
+Now that we've fixed our data, and given it appropriate names, let's
+create a \href{http://library.ucmerced.edu/node/10249}{data dictionary}.
+
+A data dictionary provides a quick overview of
+features/variables/columns, alongside data types and descriptions. The
+more descriptive you can be, the more useful this document is.
+
+Example of a Fictional Data Dictionary Entry:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Feature\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Dataset\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+\textbf{county\_pop}\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+\emph{integer}\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+2010 census\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+The population of the county (units in thousands, where 2.5 represents
+2500 people).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+\textbf{per\_poverty}\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+\emph{float}\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+2010 census\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+The percent of the county over the age of 18 living below the 200\% of
+official US poverty rate (units percent to two decimal places 98.10
+means 98.1\%)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\href{https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working\%20With\%20Markdown\%20Cells.html}{Here's
+a quick link to a short guide for formatting markdown in Jupyter
+notebooks}.
+
+Provided is the skeleton for formatting a markdown table, with columns
+headers that will help you create a data dictionary to quickly summarize
+your data, as well as some examples. \textbf{This would be a great thing
+to copy and paste into your custom README for this project.}
+
+    \begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Feature\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Dataset\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+sat\_state\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+object\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+SAT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+State where 2017 SAT Tests were administered\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+sat\_participation\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+int\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+SAT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+2017 SAT state participation percentage rate\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+sat\_read\_write\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+int\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+SAT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 SAT reading+writing scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+sat\_math\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+int\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+SAT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 SAT math scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+sat\_total\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+int\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+SAT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the total of the 2017 SAT math \& reading+writing scores of students in
+each US state\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Feature\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Dataset\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_state\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+object\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+State where 2017 ACT Tests were administered\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_participation\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+int\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the 2017 ACT participation percentage rate\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_english\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+float\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 ACT English scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_math\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+float\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 ACT math scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_reading\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+float\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 ACT reading scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_science\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+float\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the average 2017 ACT science scores\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+act\_composite\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+float\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+ACT\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+the composite (average) of the 4 2017 ACT Sections
+(English+math+reading+science) of students in each US state\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \paragraph{9. Drop unnecessary rows}\label{drop-unnecessary-rows}
+
+One of our dataframes contains an extra row. Identify and remove this
+from the dataframe.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}209}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{10. Merge Dataframes}\label{merge-dataframes}
+
+Join the 2017 ACT and SAT dataframes using the state in each dataframe
+as the key. Assign this to a new variable.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}210}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n}{sat\PYZus{}act\PYZus{}merge} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{p}{,} \PY{n}{sat\PYZus{}data}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{n}{act\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{validate}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+          
+          \PY{n}{sat\PYZus{}act\PYZus{}merge}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}210}]:}                    key\_0             act\_state act\_participation  act\_english  \textbackslash{}
+          0                Alabama               Alabama              100\%         18.9   
+          1                 Alaska                Alaska               65\%         18.7   
+          2                Arizona               Arizona               62\%         18.6   
+          3               Arkansas              Arkansas              100\%         18.9   
+          4             California            California               31\%         22.5   
+          5               Colorado              Colorado              100\%         20.1   
+          6            Connecticut           Connecticut               31\%         25.5   
+          7               Delaware              Delaware               18\%         24.1   
+          8   District of Columbia  District of Columbia               32\%         24.4   
+          9                Florida               Florida               73\%         19.0   
+          10               Georgia               Georgia               55\%         21.0   
+          11                Hawaii                Hawaii               90\%         17.8   
+          12                 Idaho                 Idaho               38\%         21.9   
+          13              Illinois              Illinois               93\%         21.0   
+          14               Indiana               Indiana               35\%         22.0   
+          15                  Iowa                  Iowa               67\%         21.2   
+          16                Kansas                Kansas               73\%         21.1   
+          17              Kentucky              Kentucky              100\%         19.6   
+          18             Louisiana             Louisiana              100\%         19.4   
+          19                 Maine                 Maine                8\%         24.2   
+          20              Maryland              Maryland               28\%         23.3   
+          21         Massachusetts         Massachusetts               29\%         25.4   
+          22              Michigan              Michigan               29\%         24.1   
+          23             Minnesota             Minnesota              100\%         20.4   
+          24           Mississippi           Mississippi              100\%         18.2   
+          25              Missouri              Missouri              100\%         19.8   
+          26               Montana               Montana              100\%         19.0   
+          27              Nebraska              Nebraska               84\%         20.9   
+          28                Nevada                Nevada              100\%         16.3   
+          29         New Hampshire         New Hampshire               18\%         25.4   
+          30            New Jersey            New Jersey               34\%         23.8   
+          31            New Mexico            New Mexico               66\%         18.6   
+          32              New York              New York               31\%         23.8   
+          33        North Carolina        North Carolina              100\%         17.8   
+          34          North Dakota          North Dakota               98\%         19.0   
+          35                  Ohio                  Ohio               75\%         21.2   
+          36              Oklahoma              Oklahoma              100\%         18.5   
+          37                Oregon                Oregon               40\%         21.2   
+          38          Pennsylvania          Pennsylvania               23\%         23.4   
+          39          Rhode Island          Rhode Island               21\%         24.0   
+          40        South Carolina        South Carolina              100\%         17.5   
+          41          South Dakota          South Dakota               80\%         20.7   
+          42             Tennessee             Tennessee              100\%         19.5   
+          43                 Texas                 Texas               45\%         19.5   
+          44                  Utah                  Utah              100\%         19.5   
+          45               Vermont               Vermont               29\%         23.3   
+          46              Virginia              Virginia               29\%         23.5   
+          47            Washington            Washington               29\%         20.9   
+          48         West Virginia         West Virginia               69\%         20.0   
+          49             Wisconsin             Wisconsin              100\%         19.7   
+          50               Wyoming               Wyoming              100\%         19.4   
+          
+              act\_math  act\_reading  act\_science act\_composite             sat\_state  \textbackslash{}
+          0       18.4         19.7         19.4          19.2               Alabama   
+          1       19.8         20.4         19.9          19.8                Alaska   
+          2       19.8         20.1         19.8          19.7               Arizona   
+          3       19.0         19.7         19.5          19.4              Arkansas   
+          4       22.7         23.1         22.2          22.8            California   
+          5       20.3         21.2         20.9          20.8              Colorado   
+          6       24.6         25.6         24.6          25.2           Connecticut   
+          7       23.4         24.8         23.6          24.1              Delaware   
+          8       23.5         24.9         23.5          24.2  District of Columbia   
+          9       19.4         21.0         19.4          19.8               Florida   
+          10      20.9         22.0         21.3          21.4               Georgia   
+          11      19.2         19.2         19.3          19.0                Hawaii   
+          12      21.8         23.0         22.1          22.3                 Idaho   
+          13      21.2         21.6         21.3          21.4              Illinois   
+          14      22.4         23.2         22.3          22.6               Indiana   
+          15      21.3         22.6         22.1          21.9                  Iowa   
+          16      21.3         22.3         21.7          21.7                Kansas   
+          17      19.4         20.5         20.1          20.0              Kentucky   
+          18      18.8         19.8         19.6          19.5             Louisiana   
+          19      24.0         24.8         23.7          24.3                 Maine   
+          20      23.1         24.2          2.3          23.6              Maryland   
+          21      25.3         25.9         24.7          25.4         Massachusetts   
+          22      23.7         24.5         23.8          24.1              Michigan   
+          23      21.5         21.8         21.6          21.5             Minnesota   
+          24      18.1         18.8         18.8          18.6           Mississippi   
+          25      19.9         20.8         20.5          20.4              Missouri   
+          26      20.2         21.0         20.5          20.3               Montana   
+          27      20.9         21.9         21.5          21.4              Nebraska   
+          28      18.0         18.1         18.2          17.8                Nevada   
+          29      25.1         26.0         24.9          25.5         New Hampshire   
+          30      23.8         24.1         23.2          23.9            New Jersey   
+          31      19.4         20.4         20.0          19.7            New Mexico   
+          32      24.0         24.6         23.9          24.2              New York   
+          33      19.3         19.6         19.3          19.1        North Carolina   
+          34      20.4         20.5         20.6          20.3          North Dakota   
+          35      21.6         22.5         22.0          22.0                  Ohio   
+          36      18.8         20.1         19.6          19.4              Oklahoma   
+          37      21.5         22.4         21.7          21.8                Oregon   
+          38      23.4         24.2         23.3          23.7          Pennsylvania   
+          39      23.3         24.7         23.4          24.0          Rhode Island   
+          40      18.6         19.1         18.9          18.7        South Carolina   
+          41      21.5         22.3         22.0          21.8          South Dakota   
+          42      19.2         20.1         19.9          19.8             Tennessee   
+          43      20.7         21.1         20.9          20.7                 Texas   
+          44      19.9         20.8         20.6          20.3                  Utah   
+          45      23.1         24.4         23.2          23.6               Vermont   
+          46      23.3         24.6         23.5          23.8              Virginia   
+          47      21.9         22.1         22.0          21.9            Washington   
+          48      19.4         21.2         20.5          20.4         West Virginia   
+          49      20.4         20.6         20.9          20.5             Wisconsin   
+          50      19.8         20.8         20.6         20.2x               Wyoming   
+          
+             sat\_participation  sat\_read\_write  sat\_math  sat\_total  
+          0                 5\%             593       572       1165  
+          1                38\%             547       533       1080  
+          2                30\%             563       553       1116  
+          3                 3\%             614       594       1208  
+          4                53\%             531       524       1055  
+          5                11\%             606       595       1201  
+          6               100\%             530       512       1041  
+          7               100\%             503       492        996  
+          8               100\%             482       468        950  
+          9                83\%             520       497       1017  
+          10               61\%             535       515       1050  
+          11               55\%             544       541       1085  
+          12               93\%             513       493       1005  
+          13                9\%             559       556       1115  
+          14               63\%             542       532       1074  
+          15                2\%             641       635       1275  
+          16                4\%             632       628       1260  
+          17                4\%             631       616       1247  
+          18                4\%             611       586       1198  
+          19               95\%             513       499       1012  
+          20               69\%             536        52       1060  
+          21               76\%             555       551       1107  
+          22              100\%             509       495       1005  
+          23                3\%             644       651       1295  
+          24                2\%             634       607       1242  
+          25                3\%             640       631       1271  
+          26               10\%             605       591       1196  
+          27                3\%             629       625       1253  
+          28               26\%             563       553       1116  
+          29               96\%             532       520       1052  
+          30               70\%             530       526       1056  
+          31               11\%             577       561       1138  
+          32               67\%             528       523       1052  
+          33               49\%             546       535       1081  
+          34                2\%             635       621       1256  
+          35               12\%             578       570       1149  
+          36                7\%             530       517       1047  
+          37               43\%             560       548       1108  
+          38               65\%             540       531       1071  
+          39               71\%             539       524       1062  
+          40               50\%             543       521       1064  
+          41                3\%             612       603       1216  
+          42                5\%             623       604       1228  
+          43               62\%             513       507       1020  
+          44                3\%             624       614       1238  
+          45               60\%             562       551       1114  
+          46               65\%             561       541       1102  
+          47               64\%             541       534       1075  
+          48               14\%             558       528       1086  
+          49                3\%             642       649       1291  
+          50                3\%             626       604       1230  
+\end{Verbatim}
+            
+    \paragraph{11. Save your cleaned, merged
+dataframe}\label{save-your-cleaned-merged-dataframe}
+
+Use a relative path to save out your data as
+\texttt{combined\_2017.csv}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}211}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n}{sat\PYZus{}act\PYZus{}merge}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/combined\PYZus{}2017.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{2018 Data Import and
+Cleaning}\label{data-import-and-cleaning}
+
+    Links to the 2018 ACT and SAT data are provided in the README. These
+data live in PDFs, and so you'll get to enjoy practicing some
+\emph{manual} data collection. Save these data as a CSV in your
+\texttt{data} directory, and import, explore, and clean these data in
+the same way you did above. \textbf{Make sure you comment on your steps
+so it is clear \emph{why} you are doing each process}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}213}]:} \PY{n}{sat\PYZus{}data\PYZus{}18} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/sat\PYZus{}2018.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{act\PYZus{}data\PYZus{}18} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/act\PYZus{}2018.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}18} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{act\PYZus{}data\PYZus{}18}\PY{p}{,} \PY{n}{sat\PYZus{}data\PYZus{}18}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{n}{act\PYZus{}data\PYZus{}18}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Combine your 2017 and 2018 data into a single
+dataframe}\label{combine-your-2017-and-2018-data-into-a-single-dataframe}
+
+Joining on state names should work, assuming you formatted all your
+state names identically. Make sure none of your columns (other than
+state) have identical names. Do yourself a favor and decide if you're
+encoding participation rates as floats or integers and standardize this
+across your datasets.
+
+Save the contents of this merged dataframe as \texttt{final.csv}.
+
+\textbf{Use this combined dataframe for the remainder of the project}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}214}]:} \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}18}\PY{p}{,} \PY{n}{sat\PYZus{}act\PYZus{}merge}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{n}{sat\PYZus{}act\PYZus{}merge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{validate}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+          
+          \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}214}]:}                    key\_0               key\_0\_x               State\_x  \textbackslash{}
+          0                Alabama               Alabama               Alabama   
+          1                 Alaska              Arkansas              Arkansas   
+          2                Arizona              Kentucky              Kentucky   
+          3               Arkansas             Louisiana             Louisiana   
+          4             California           Mississippi           Mississippi   
+          5               Colorado              Missouri              Missouri   
+          6            Connecticut               Montana               Montana   
+          7               Delaware              Nebraska              Nebraska   
+          8   District of Columbia                Nevada                Nevada   
+          9                Florida        North Carolina        North Carolina   
+          10               Georgia                  Ohio                  Ohio   
+          11                Hawaii              Oklahoma              Oklahoma   
+          12                 Idaho        South Carolina        South Carolina   
+          13              Illinois             Tennessee             Tennessee   
+          14               Indiana                  Utah                  Utah   
+          15                  Iowa             Wisconsin             Wisconsin   
+          16                Kansas               Wyoming               Wyoming   
+          17              Kentucky             Minnesota             Minnesota   
+          18             Louisiana          North Dakota          North Dakota   
+          19                 Maine                Hawaii                Hawaii   
+          20              Maryland          South Dakota          South Dakota   
+          21         Massachusetts                Kansas                Kansas   
+          22              Michigan                  Iowa                  Iowa   
+          23             Minnesota            New Mexico            New Mexico   
+          24           Mississippi               Arizona               Arizona   
+          25              Missouri               Florida               Florida   
+          26               Montana         West Virginia         West Virginia   
+          27              Nebraska               Georgia               Georgia   
+          28                Nevada              Illinois              Illinois   
+          29         New Hampshire                Oregon                Oregon   
+          30            New Jersey                 Texas                 Texas   
+          31            New Mexico                 Idaho                 Idaho   
+          32              New York                Alaska                Alaska   
+          33        North Carolina  District of Columbia  District of Columbia   
+          34          North Dakota               Indiana               Indiana   
+          35                  Ohio              Maryland              Maryland   
+          36              Oklahoma            New Jersey            New Jersey   
+          37                Oregon              Colorado              Colorado   
+          38          Pennsylvania            California            California   
+          39          Rhode Island              New York              New York   
+          40        South Carolina           Connecticut           Connecticut   
+          41          South Dakota         Massachusetts         Massachusetts   
+          42             Tennessee               Vermont               Vermont   
+          43                 Texas              Virginia              Virginia   
+          44                  Utah            Washington            Washington   
+          45               Vermont              Michigan              Michigan   
+          46              Virginia          Pennsylvania          Pennsylvania   
+          47            Washington              Delaware              Delaware   
+          48         West Virginia         New Hampshire         New Hampshire   
+          49             Wisconsin          Rhode Island          Rhode Island   
+          50               Wyoming                 Maine                 Maine   
+          
+              Participation  Composite               State\_y  Unnamed: 1  Total  \textbackslash{}
+          0             100       19.1               Alabama           5   1169   
+          1             100       19.4                Alaska         533   1080   
+          2             100       20.2               Arizona         553   1116   
+          3             100       19.2              Arkansas         594   1208   
+          4             100       18.6            California          60   1076   
+          5             100       20.0              Colorado         100   1025   
+          6             100       20.0           Connecticut         100   1053   
+          7             100       20.1              Delaware         100    998   
+          8             100       17.7  District of Columbia          92    977   
+          9             100       19.1               Florida          97   1014   
+          10            100       20.3               Georgia          70   1064   
+          11            100       19.3                Hawaii          56   1099   
+          12            100       18.3                 Idaho         100   1001   
+          13            100       19.6              Illinois          99   1019   
+          14            100       20.4               Indiana          67   1086   
+          15            100       20.5                  Iowa           3   1265   
+          16            100       20.0                Kansas           4   1265   
+          17             99       21.3              Kentucky           4   1248   
+          18             98       20.3             Louisiana           4   1210   
+          19             89       18.9                 Maine          99   1013   
+          20             77       21.9              Maryland          76   1080   
+          21             71       21.6         Massachusetts          80   1125   
+          22             68       21.8              Michigan         100   1011   
+          23             67       19.4             Minnesota           4   1298   
+          24             66       19.2           Mississippi           3   1236   
+          25             66       19.9              Missouri           4   1262   
+          26             65       20.3               Montana          10   1198   
+          27             53       21.4              Nebraska           3   1252   
+          28             43       23.9                Nevada          23   1140   
+          29             42       21.3         New Hampshire          96   1063   
+          30             41       20.6            New Jersey          82   1094   
+          31             36       22.3            New Mexico          16   1093   
+          32             33       20.8              New York          79   1068   
+          33             32       23.6        North Carolina          52   1098   
+          34             32       22.5          North Dakota           2   1283   
+          35             31       22.5                  Ohio          18   1099   
+          36             31       23.7              Oklahoma           8   1062   
+          37             30       23.9                Oregon          48   1117   
+          38             27       22.7          Pennsylvania          70   1086   
+          39             27       24.5          Rhode Island          97   1018   
+          40             26       25.6        South Carolina          55   1070   
+          41             25       25.5          South Dakota           3   1241   
+          42             24       24.1             Tennessee           6   1231   
+          43             24       23.9                 Texas          66   1032   
+          44             24       22.2                  Utah           4   1230   
+          45             24       24.4               Vermont          64   1120   
+          46             20       23.5              Virginia          68   1117   
+          47             17       23.8            Washington          69   1081   
+          48             16       25.1         West Virginia          28    999   
+          49             15       24.2             Wisconsin           3   1294   
+          50              7       24.0               Wyoming           3   1257   
+          
+                           key\_0\_y             act\_state  {\ldots} act\_english  act\_math  \textbackslash{}
+          0                Alabama               Alabama  {\ldots}        18.9      18.4   
+          1                 Alaska                Alaska  {\ldots}        18.7      19.8   
+          2                Arizona               Arizona  {\ldots}        18.6      19.8   
+          3               Arkansas              Arkansas  {\ldots}        18.9      19.0   
+          4             California            California  {\ldots}        22.5      22.7   
+          5               Colorado              Colorado  {\ldots}        20.1      20.3   
+          6            Connecticut           Connecticut  {\ldots}        25.5      24.6   
+          7               Delaware              Delaware  {\ldots}        24.1      23.4   
+          8   District of Columbia  District of Columbia  {\ldots}        24.4      23.5   
+          9                Florida               Florida  {\ldots}        19.0      19.4   
+          10               Georgia               Georgia  {\ldots}        21.0      20.9   
+          11                Hawaii                Hawaii  {\ldots}        17.8      19.2   
+          12                 Idaho                 Idaho  {\ldots}        21.9      21.8   
+          13              Illinois              Illinois  {\ldots}        21.0      21.2   
+          14               Indiana               Indiana  {\ldots}        22.0      22.4   
+          15                  Iowa                  Iowa  {\ldots}        21.2      21.3   
+          16                Kansas                Kansas  {\ldots}        21.1      21.3   
+          17              Kentucky              Kentucky  {\ldots}        19.6      19.4   
+          18             Louisiana             Louisiana  {\ldots}        19.4      18.8   
+          19                 Maine                 Maine  {\ldots}        24.2      24.0   
+          20              Maryland              Maryland  {\ldots}        23.3      23.1   
+          21         Massachusetts         Massachusetts  {\ldots}        25.4      25.3   
+          22              Michigan              Michigan  {\ldots}        24.1      23.7   
+          23             Minnesota             Minnesota  {\ldots}        20.4      21.5   
+          24           Mississippi           Mississippi  {\ldots}        18.2      18.1   
+          25              Missouri              Missouri  {\ldots}        19.8      19.9   
+          26               Montana               Montana  {\ldots}        19.0      20.2   
+          27              Nebraska              Nebraska  {\ldots}        20.9      20.9   
+          28                Nevada                Nevada  {\ldots}        16.3      18.0   
+          29         New Hampshire         New Hampshire  {\ldots}        25.4      25.1   
+          30            New Jersey            New Jersey  {\ldots}        23.8      23.8   
+          31            New Mexico            New Mexico  {\ldots}        18.6      19.4   
+          32              New York              New York  {\ldots}        23.8      24.0   
+          33        North Carolina        North Carolina  {\ldots}        17.8      19.3   
+          34          North Dakota          North Dakota  {\ldots}        19.0      20.4   
+          35                  Ohio                  Ohio  {\ldots}        21.2      21.6   
+          36              Oklahoma              Oklahoma  {\ldots}        18.5      18.8   
+          37                Oregon                Oregon  {\ldots}        21.2      21.5   
+          38          Pennsylvania          Pennsylvania  {\ldots}        23.4      23.4   
+          39          Rhode Island          Rhode Island  {\ldots}        24.0      23.3   
+          40        South Carolina        South Carolina  {\ldots}        17.5      18.6   
+          41          South Dakota          South Dakota  {\ldots}        20.7      21.5   
+          42             Tennessee             Tennessee  {\ldots}        19.5      19.2   
+          43                 Texas                 Texas  {\ldots}        19.5      20.7   
+          44                  Utah                  Utah  {\ldots}        19.5      19.9   
+          45               Vermont               Vermont  {\ldots}        23.3      23.1   
+          46              Virginia              Virginia  {\ldots}        23.5      23.3   
+          47            Washington            Washington  {\ldots}        20.9      21.9   
+          48         West Virginia         West Virginia  {\ldots}        20.0      19.4   
+          49             Wisconsin             Wisconsin  {\ldots}        19.7      20.4   
+          50               Wyoming               Wyoming  {\ldots}        19.4      19.8   
+          
+              act\_reading  act\_science  act\_composite             sat\_state  \textbackslash{}
+          0          19.7         19.4           19.2               Alabama   
+          1          20.4         19.9           19.8                Alaska   
+          2          20.1         19.8           19.7               Arizona   
+          3          19.7         19.5           19.4              Arkansas   
+          4          23.1         22.2           22.8            California   
+          5          21.2         20.9           20.8              Colorado   
+          6          25.6         24.6           25.2           Connecticut   
+          7          24.8         23.6           24.1              Delaware   
+          8          24.9         23.5           24.2  District of Columbia   
+          9          21.0         19.4           19.8               Florida   
+          10         22.0         21.3           21.4               Georgia   
+          11         19.2         19.3           19.0                Hawaii   
+          12         23.0         22.1           22.3                 Idaho   
+          13         21.6         21.3           21.4              Illinois   
+          14         23.2         22.3           22.6               Indiana   
+          15         22.6         22.1           21.9                  Iowa   
+          16         22.3         21.7           21.7                Kansas   
+          17         20.5         20.1           20.0              Kentucky   
+          18         19.8         19.6           19.5             Louisiana   
+          19         24.8         23.7           24.3                 Maine   
+          20         24.2          2.3           23.6              Maryland   
+          21         25.9         24.7           25.4         Massachusetts   
+          22         24.5         23.8           24.1              Michigan   
+          23         21.8         21.6           21.5             Minnesota   
+          24         18.8         18.8           18.6           Mississippi   
+          25         20.8         20.5           20.4              Missouri   
+          26         21.0         20.5           20.3               Montana   
+          27         21.9         21.5           21.4              Nebraska   
+          28         18.1         18.2           17.8                Nevada   
+          29         26.0         24.9           25.5         New Hampshire   
+          30         24.1         23.2           23.9            New Jersey   
+          31         20.4         20.0           19.7            New Mexico   
+          32         24.6         23.9           24.2              New York   
+          33         19.6         19.3           19.1        North Carolina   
+          34         20.5         20.6           20.3          North Dakota   
+          35         22.5         22.0           22.0                  Ohio   
+          36         20.1         19.6           19.4              Oklahoma   
+          37         22.4         21.7           21.8                Oregon   
+          38         24.2         23.3           23.7          Pennsylvania   
+          39         24.7         23.4           24.0          Rhode Island   
+          40         19.1         18.9           18.7        South Carolina   
+          41         22.3         22.0           21.8          South Dakota   
+          42         20.1         19.9           19.8             Tennessee   
+          43         21.1         20.9           20.7                 Texas   
+          44         20.8         20.6           20.3                  Utah   
+          45         24.4         23.2           23.6               Vermont   
+          46         24.6         23.5           23.8              Virginia   
+          47         22.1         22.0           21.9            Washington   
+          48         21.2         20.5           20.4         West Virginia   
+          49         20.6         20.9           20.5             Wisconsin   
+          50         20.8         20.6          20.2x               Wyoming   
+          
+             sat\_participation sat\_read\_write  sat\_math  sat\_total  
+          0                 5\%            593       572       1165  
+          1                38\%            547       533       1080  
+          2                30\%            563       553       1116  
+          3                 3\%            614       594       1208  
+          4                53\%            531       524       1055  
+          5                11\%            606       595       1201  
+          6               100\%            530       512       1041  
+          7               100\%            503       492        996  
+          8               100\%            482       468        950  
+          9                83\%            520       497       1017  
+          10               61\%            535       515       1050  
+          11               55\%            544       541       1085  
+          12               93\%            513       493       1005  
+          13                9\%            559       556       1115  
+          14               63\%            542       532       1074  
+          15                2\%            641       635       1275  
+          16                4\%            632       628       1260  
+          17                4\%            631       616       1247  
+          18                4\%            611       586       1198  
+          19               95\%            513       499       1012  
+          20               69\%            536        52       1060  
+          21               76\%            555       551       1107  
+          22              100\%            509       495       1005  
+          23                3\%            644       651       1295  
+          24                2\%            634       607       1242  
+          25                3\%            640       631       1271  
+          26               10\%            605       591       1196  
+          27                3\%            629       625       1253  
+          28               26\%            563       553       1116  
+          29               96\%            532       520       1052  
+          30               70\%            530       526       1056  
+          31               11\%            577       561       1138  
+          32               67\%            528       523       1052  
+          33               49\%            546       535       1081  
+          34                2\%            635       621       1256  
+          35               12\%            578       570       1149  
+          36                7\%            530       517       1047  
+          37               43\%            560       548       1108  
+          38               65\%            540       531       1071  
+          39               71\%            539       524       1062  
+          40               50\%            543       521       1064  
+          41                3\%            612       603       1216  
+          42                5\%            623       604       1228  
+          43               62\%            513       507       1020  
+          44                3\%            624       614       1238  
+          45               60\%            562       551       1114  
+          46               65\%            561       541       1102  
+          47               64\%            541       534       1075  
+          48               14\%            558       528       1086  
+          49                3\%            642       649       1291  
+          50                3\%            626       604       1230  
+          
+          [51 rows x 21 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}215}]:} \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../data/final.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Exploratory Data Analysis}\label{exploratory-data-analysis}
+
+\subsubsection{Summary Statistics}\label{summary-statistics}
+
+Transpose the output of pandas \texttt{describe} method to create a
+quick overview of each numeric feature.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}216}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}216}]:}                   count unique     top freq     mean      std   min     25\%  \textbackslash{}
+          key\_0                51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          key\_0\_x              51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          State\_x              51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          Participation        51    NaN     NaN  NaN  61.6863  34.0356     7    28.5   
+          Composite            51    NaN     NaN  NaN   21.498  2.11769  17.7   19.95   
+          State\_y              51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          Unnamed: 1           51    NaN     NaN  NaN  78.0392  127.479     2     4.5   
+          Total                51    NaN     NaN  NaN  1124.33  94.5437   977  1062.5   
+          key\_0\_y              51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          act\_state            51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          act\_participation    51     27    100\%   17      NaN      NaN   NaN     NaN   
+          act\_english          51    NaN     NaN  NaN  20.9314  2.35368  16.3      19   
+          act\_math             51    NaN     NaN  NaN  21.1824  1.98199    18    19.4   
+          act\_reading          51    NaN     NaN  NaN  22.0137  2.06727  18.1   20.45   
+          act\_science          51    NaN     NaN  NaN  21.0412  3.18246   2.3    19.9   
+          act\_composite        51     37    20.3    3      NaN      NaN   NaN     NaN   
+          sat\_state            51     51  Oregon    1      NaN      NaN   NaN     NaN   
+          sat\_participation    51     34      3\%    8      NaN      NaN   NaN     NaN   
+          sat\_read\_write       51    NaN     NaN  NaN  569.118  45.6669   482   533.5   
+          sat\_math             51    NaN     NaN  NaN  547.627  84.9091    52     522   
+          sat\_total            51    NaN     NaN  NaN   1126.1  92.4948   950  1055.5   
+          
+                              50\%    75\%   max  
+          key\_0               NaN    NaN   NaN  
+          key\_0\_x             NaN    NaN   NaN  
+          State\_x             NaN    NaN   NaN  
+          Participation        66    100   100  
+          Composite          21.3  23.65  25.6  
+          State\_y             NaN    NaN   NaN  
+          Unnamed: 1           60     94   594  
+          Total              1098   1220  1298  
+          key\_0\_y             NaN    NaN   NaN  
+          act\_state           NaN    NaN   NaN  
+          act\_participation   NaN    NaN   NaN  
+          act\_english        20.7   23.3  25.5  
+          act\_math           20.9   23.1  25.3  
+          act\_reading        21.8  24.15    26  
+          act\_science        21.3  22.75  24.9  
+          act\_composite       NaN    NaN   NaN  
+          sat\_state           NaN    NaN   NaN  
+          sat\_participation   NaN    NaN   NaN  
+          sat\_read\_write      559    613   644  
+          sat\_math            548    599   651  
+          sat\_total          1107   1212  1295  
+\end{Verbatim}
+            
+    \paragraph{Manually calculate standard
+deviation}\label{manually-calculate-standard-deviation}
+
+\[\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^n(x_i - \mu)^2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  Write a function to calculate standard deviation using the formula
+  above
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}217}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{c+c1}{\PYZsh{}source: https://www.w3resource.com/python\PYZhy{}exercises/math/python\PYZhy{}math\PYZhy{}exercise\PYZhy{}57.php}
+          
+          \PY{k+kn}{import} \PY{n+nn}{math}
+          \PY{k+kn}{import} \PY{n+nn}{sys}
+          
+          \PY{k}{def} \PY{n+nf}{sd\PYZus{}calc}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+          
+              \PY{k}{if} \PY{n}{n} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mf}{0.0}
+          
+              \PY{n}{mean}\PY{p}{,} \PY{n}{sd} \PY{o}{=} \PY{n}{avg\PYZus{}calc}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{,} \PY{l+m+mf}{0.0}
+          
+              \PY{c+c1}{\PYZsh{} calculate stan. dev.}
+              \PY{k}{for} \PY{n}{el} \PY{o+ow}{in} \PY{n}{data}\PY{p}{:}
+                  \PY{n}{sd} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{el}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{mean}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{sd} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{sd} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+          
+              \PY{k}{return} \PY{n}{sd}
+          
+          \PY{k}{def} \PY{n+nf}{avg\PYZus{}calc}\PY{p}{(}\PY{n}{ls}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n}\PY{p}{,} \PY{n}{mean} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ls}\PY{p}{)}\PY{p}{,} \PY{l+m+mf}{0.0}
+          
+              \PY{k}{if} \PY{n}{n} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{ls}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          
+              \PY{c+c1}{\PYZsh{} calculate average}
+              \PY{k}{for} \PY{n}{el} \PY{o+ow}{in} \PY{n}{ls}\PY{p}{:}
+                  \PY{n}{mean} \PY{o}{=} \PY{n}{mean} \PY{o}{+} \PY{n+nb}{float}\PY{p}{(}\PY{n}{el}\PY{p}{)}
+              \PY{n}{mean} \PY{o}{=} \PY{n}{mean} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+          
+              \PY{k}{return} \PY{n}{mean}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Use a \textbf{dictionary comprehension} to apply your standard
+  deviation function to each numeric column in the dataframe. \textbf{No
+  loops}\\
+\item
+  Assign the output to variable \texttt{sd} as a dictionary where:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each column name is now a key
+  \item
+    That standard deviation of the column is the value
+  \end{itemize}
+\end{itemize}
+
+\emph{Example Output :}
+\texttt{\{\textquotesingle{}ACT\_Math\textquotesingle{}:\ 120,\ \textquotesingle{}ACT\_Reading\textquotesingle{}:\ 120,\ ...\}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}218}]:} \PY{c+c1}{\PYZsh{}Code:}
+          \PY{n}{sd} \PY{o}{=} \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{std}
+                
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}219}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{sd}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<bound method DataFrame.std of                    key\_0               key\_0\_x               State\_x  \textbackslash{}
+0                Alabama               Alabama               Alabama   
+1                 Alaska              Arkansas              Arkansas   
+2                Arizona              Kentucky              Kentucky   
+3               Arkansas             Louisiana             Louisiana   
+4             California           Mississippi           Mississippi   
+5               Colorado              Missouri              Missouri   
+6            Connecticut               Montana               Montana   
+7               Delaware              Nebraska              Nebraska   
+8   District of Columbia                Nevada                Nevada   
+9                Florida        North Carolina        North Carolina   
+10               Georgia                  Ohio                  Ohio   
+11                Hawaii              Oklahoma              Oklahoma   
+12                 Idaho        South Carolina        South Carolina   
+13              Illinois             Tennessee             Tennessee   
+14               Indiana                  Utah                  Utah   
+15                  Iowa             Wisconsin             Wisconsin   
+16                Kansas               Wyoming               Wyoming   
+17              Kentucky             Minnesota             Minnesota   
+18             Louisiana          North Dakota          North Dakota   
+19                 Maine                Hawaii                Hawaii   
+20              Maryland          South Dakota          South Dakota   
+21         Massachusetts                Kansas                Kansas   
+22              Michigan                  Iowa                  Iowa   
+23             Minnesota            New Mexico            New Mexico   
+24           Mississippi               Arizona               Arizona   
+25              Missouri               Florida               Florida   
+26               Montana         West Virginia         West Virginia   
+27              Nebraska               Georgia               Georgia   
+28                Nevada              Illinois              Illinois   
+29         New Hampshire                Oregon                Oregon   
+30            New Jersey                 Texas                 Texas   
+31            New Mexico                 Idaho                 Idaho   
+32              New York                Alaska                Alaska   
+33        North Carolina  District of Columbia  District of Columbia   
+34          North Dakota               Indiana               Indiana   
+35                  Ohio              Maryland              Maryland   
+36              Oklahoma            New Jersey            New Jersey   
+37                Oregon              Colorado              Colorado   
+38          Pennsylvania            California            California   
+39          Rhode Island              New York              New York   
+40        South Carolina           Connecticut           Connecticut   
+41          South Dakota         Massachusetts         Massachusetts   
+42             Tennessee               Vermont               Vermont   
+43                 Texas              Virginia              Virginia   
+44                  Utah            Washington            Washington   
+45               Vermont              Michigan              Michigan   
+46              Virginia          Pennsylvania          Pennsylvania   
+47            Washington              Delaware              Delaware   
+48         West Virginia         New Hampshire         New Hampshire   
+49             Wisconsin          Rhode Island          Rhode Island   
+50               Wyoming                 Maine                 Maine   
+
+    Participation  Composite               State\_y  Unnamed: 1  Total  \textbackslash{}
+0             100       19.1               Alabama           5   1169   
+1             100       19.4                Alaska         533   1080   
+2             100       20.2               Arizona         553   1116   
+3             100       19.2              Arkansas         594   1208   
+4             100       18.6            California          60   1076   
+5             100       20.0              Colorado         100   1025   
+6             100       20.0           Connecticut         100   1053   
+7             100       20.1              Delaware         100    998   
+8             100       17.7  District of Columbia          92    977   
+9             100       19.1               Florida          97   1014   
+10            100       20.3               Georgia          70   1064   
+11            100       19.3                Hawaii          56   1099   
+12            100       18.3                 Idaho         100   1001   
+13            100       19.6              Illinois          99   1019   
+14            100       20.4               Indiana          67   1086   
+15            100       20.5                  Iowa           3   1265   
+16            100       20.0                Kansas           4   1265   
+17             99       21.3              Kentucky           4   1248   
+18             98       20.3             Louisiana           4   1210   
+19             89       18.9                 Maine          99   1013   
+20             77       21.9              Maryland          76   1080   
+21             71       21.6         Massachusetts          80   1125   
+22             68       21.8              Michigan         100   1011   
+23             67       19.4             Minnesota           4   1298   
+24             66       19.2           Mississippi           3   1236   
+25             66       19.9              Missouri           4   1262   
+26             65       20.3               Montana          10   1198   
+27             53       21.4              Nebraska           3   1252   
+28             43       23.9                Nevada          23   1140   
+29             42       21.3         New Hampshire          96   1063   
+30             41       20.6            New Jersey          82   1094   
+31             36       22.3            New Mexico          16   1093   
+32             33       20.8              New York          79   1068   
+33             32       23.6        North Carolina          52   1098   
+34             32       22.5          North Dakota           2   1283   
+35             31       22.5                  Ohio          18   1099   
+36             31       23.7              Oklahoma           8   1062   
+37             30       23.9                Oregon          48   1117   
+38             27       22.7          Pennsylvania          70   1086   
+39             27       24.5          Rhode Island          97   1018   
+40             26       25.6        South Carolina          55   1070   
+41             25       25.5          South Dakota           3   1241   
+42             24       24.1             Tennessee           6   1231   
+43             24       23.9                 Texas          66   1032   
+44             24       22.2                  Utah           4   1230   
+45             24       24.4               Vermont          64   1120   
+46             20       23.5              Virginia          68   1117   
+47             17       23.8            Washington          69   1081   
+48             16       25.1         West Virginia          28    999   
+49             15       24.2             Wisconsin           3   1294   
+50              7       24.0               Wyoming           3   1257   
+
+                 key\_0\_y             act\_state  {\ldots} act\_english  act\_math  \textbackslash{}
+0                Alabama               Alabama  {\ldots}        18.9      18.4   
+1                 Alaska                Alaska  {\ldots}        18.7      19.8   
+2                Arizona               Arizona  {\ldots}        18.6      19.8   
+3               Arkansas              Arkansas  {\ldots}        18.9      19.0   
+4             California            California  {\ldots}        22.5      22.7   
+5               Colorado              Colorado  {\ldots}        20.1      20.3   
+6            Connecticut           Connecticut  {\ldots}        25.5      24.6   
+7               Delaware              Delaware  {\ldots}        24.1      23.4   
+8   District of Columbia  District of Columbia  {\ldots}        24.4      23.5   
+9                Florida               Florida  {\ldots}        19.0      19.4   
+10               Georgia               Georgia  {\ldots}        21.0      20.9   
+11                Hawaii                Hawaii  {\ldots}        17.8      19.2   
+12                 Idaho                 Idaho  {\ldots}        21.9      21.8   
+13              Illinois              Illinois  {\ldots}        21.0      21.2   
+14               Indiana               Indiana  {\ldots}        22.0      22.4   
+15                  Iowa                  Iowa  {\ldots}        21.2      21.3   
+16                Kansas                Kansas  {\ldots}        21.1      21.3   
+17              Kentucky              Kentucky  {\ldots}        19.6      19.4   
+18             Louisiana             Louisiana  {\ldots}        19.4      18.8   
+19                 Maine                 Maine  {\ldots}        24.2      24.0   
+20              Maryland              Maryland  {\ldots}        23.3      23.1   
+21         Massachusetts         Massachusetts  {\ldots}        25.4      25.3   
+22              Michigan              Michigan  {\ldots}        24.1      23.7   
+23             Minnesota             Minnesota  {\ldots}        20.4      21.5   
+24           Mississippi           Mississippi  {\ldots}        18.2      18.1   
+25              Missouri              Missouri  {\ldots}        19.8      19.9   
+26               Montana               Montana  {\ldots}        19.0      20.2   
+27              Nebraska              Nebraska  {\ldots}        20.9      20.9   
+28                Nevada                Nevada  {\ldots}        16.3      18.0   
+29         New Hampshire         New Hampshire  {\ldots}        25.4      25.1   
+30            New Jersey            New Jersey  {\ldots}        23.8      23.8   
+31            New Mexico            New Mexico  {\ldots}        18.6      19.4   
+32              New York              New York  {\ldots}        23.8      24.0   
+33        North Carolina        North Carolina  {\ldots}        17.8      19.3   
+34          North Dakota          North Dakota  {\ldots}        19.0      20.4   
+35                  Ohio                  Ohio  {\ldots}        21.2      21.6   
+36              Oklahoma              Oklahoma  {\ldots}        18.5      18.8   
+37                Oregon                Oregon  {\ldots}        21.2      21.5   
+38          Pennsylvania          Pennsylvania  {\ldots}        23.4      23.4   
+39          Rhode Island          Rhode Island  {\ldots}        24.0      23.3   
+40        South Carolina        South Carolina  {\ldots}        17.5      18.6   
+41          South Dakota          South Dakota  {\ldots}        20.7      21.5   
+42             Tennessee             Tennessee  {\ldots}        19.5      19.2   
+43                 Texas                 Texas  {\ldots}        19.5      20.7   
+44                  Utah                  Utah  {\ldots}        19.5      19.9   
+45               Vermont               Vermont  {\ldots}        23.3      23.1   
+46              Virginia              Virginia  {\ldots}        23.5      23.3   
+47            Washington            Washington  {\ldots}        20.9      21.9   
+48         West Virginia         West Virginia  {\ldots}        20.0      19.4   
+49             Wisconsin             Wisconsin  {\ldots}        19.7      20.4   
+50               Wyoming               Wyoming  {\ldots}        19.4      19.8   
+
+    act\_reading  act\_science  act\_composite             sat\_state  \textbackslash{}
+0          19.7         19.4           19.2               Alabama   
+1          20.4         19.9           19.8                Alaska   
+2          20.1         19.8           19.7               Arizona   
+3          19.7         19.5           19.4              Arkansas   
+4          23.1         22.2           22.8            California   
+5          21.2         20.9           20.8              Colorado   
+6          25.6         24.6           25.2           Connecticut   
+7          24.8         23.6           24.1              Delaware   
+8          24.9         23.5           24.2  District of Columbia   
+9          21.0         19.4           19.8               Florida   
+10         22.0         21.3           21.4               Georgia   
+11         19.2         19.3           19.0                Hawaii   
+12         23.0         22.1           22.3                 Idaho   
+13         21.6         21.3           21.4              Illinois   
+14         23.2         22.3           22.6               Indiana   
+15         22.6         22.1           21.9                  Iowa   
+16         22.3         21.7           21.7                Kansas   
+17         20.5         20.1           20.0              Kentucky   
+18         19.8         19.6           19.5             Louisiana   
+19         24.8         23.7           24.3                 Maine   
+20         24.2          2.3           23.6              Maryland   
+21         25.9         24.7           25.4         Massachusetts   
+22         24.5         23.8           24.1              Michigan   
+23         21.8         21.6           21.5             Minnesota   
+24         18.8         18.8           18.6           Mississippi   
+25         20.8         20.5           20.4              Missouri   
+26         21.0         20.5           20.3               Montana   
+27         21.9         21.5           21.4              Nebraska   
+28         18.1         18.2           17.8                Nevada   
+29         26.0         24.9           25.5         New Hampshire   
+30         24.1         23.2           23.9            New Jersey   
+31         20.4         20.0           19.7            New Mexico   
+32         24.6         23.9           24.2              New York   
+33         19.6         19.3           19.1        North Carolina   
+34         20.5         20.6           20.3          North Dakota   
+35         22.5         22.0           22.0                  Ohio   
+36         20.1         19.6           19.4              Oklahoma   
+37         22.4         21.7           21.8                Oregon   
+38         24.2         23.3           23.7          Pennsylvania   
+39         24.7         23.4           24.0          Rhode Island   
+40         19.1         18.9           18.7        South Carolina   
+41         22.3         22.0           21.8          South Dakota   
+42         20.1         19.9           19.8             Tennessee   
+43         21.1         20.9           20.7                 Texas   
+44         20.8         20.6           20.3                  Utah   
+45         24.4         23.2           23.6               Vermont   
+46         24.6         23.5           23.8              Virginia   
+47         22.1         22.0           21.9            Washington   
+48         21.2         20.5           20.4         West Virginia   
+49         20.6         20.9           20.5             Wisconsin   
+50         20.8         20.6          20.2x               Wyoming   
+
+   sat\_participation sat\_read\_write  sat\_math  sat\_total  
+0                 5\%            593       572       1165  
+1                38\%            547       533       1080  
+2                30\%            563       553       1116  
+3                 3\%            614       594       1208  
+4                53\%            531       524       1055  
+5                11\%            606       595       1201  
+6               100\%            530       512       1041  
+7               100\%            503       492        996  
+8               100\%            482       468        950  
+9                83\%            520       497       1017  
+10               61\%            535       515       1050  
+11               55\%            544       541       1085  
+12               93\%            513       493       1005  
+13                9\%            559       556       1115  
+14               63\%            542       532       1074  
+15                2\%            641       635       1275  
+16                4\%            632       628       1260  
+17                4\%            631       616       1247  
+18                4\%            611       586       1198  
+19               95\%            513       499       1012  
+20               69\%            536        52       1060  
+21               76\%            555       551       1107  
+22              100\%            509       495       1005  
+23                3\%            644       651       1295  
+24                2\%            634       607       1242  
+25                3\%            640       631       1271  
+26               10\%            605       591       1196  
+27                3\%            629       625       1253  
+28               26\%            563       553       1116  
+29               96\%            532       520       1052  
+30               70\%            530       526       1056  
+31               11\%            577       561       1138  
+32               67\%            528       523       1052  
+33               49\%            546       535       1081  
+34                2\%            635       621       1256  
+35               12\%            578       570       1149  
+36                7\%            530       517       1047  
+37               43\%            560       548       1108  
+38               65\%            540       531       1071  
+39               71\%            539       524       1062  
+40               50\%            543       521       1064  
+41                3\%            612       603       1216  
+42                5\%            623       604       1228  
+43               62\%            513       507       1020  
+44                3\%            624       614       1238  
+45               60\%            562       551       1114  
+46               65\%            561       541       1102  
+47               64\%            541       534       1075  
+48               14\%            558       528       1086  
+49                3\%            642       649       1291  
+50                3\%            626       604       1230  
+
+[51 rows x 21 columns]>
+
+    \end{Verbatim}
+
+    Do your manually calculated standard deviations match up with the output
+from pandas \texttt{describe}? What about numpy's \texttt{std} method?
+
+    Answer: My manually calculated standard deviations don;t match up with
+the output from pandas describe or with numpy's std method.
+
+    \paragraph{Investigate trends in the
+data}\label{investigate-trends-in-the-data}
+
+Using sorting and/or masking (along with the \texttt{.head} method to
+not print our entire dataframe), consider the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Which states have the highest and lowest participation rates for the:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    2017 SAT?
+  \item
+    2018 SAT?
+  \item
+    2017 ACT?
+  \item
+    2018 ACT?
+  \end{itemize}
+\item
+  Which states have the highest and lowest mean total/composite scores
+  for the:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    2017 SAT?
+  \item
+    2018 SAT?
+  \item
+    2017 ACT?
+  \item
+    2018 ACT?
+  \end{itemize}
+\item
+  Do any states with 100\% participation on a given test have a rate
+  change year-to-year?
+\item
+  Do any states show have \textgreater{}50\% participation on
+  \emph{both} tests either year?
+\end{itemize}
+
+Based on what you've just observed, have you identified any states that
+you're especially interested in? \textbf{Make a note of these and state
+\emph{why} you think they're interesting}.
+
+\textbf{You should comment on your findings at each step in a markdown
+cell below your code block}. Make sure you include at least one example
+of sorting your dataframe by a column, and one example of using boolean
+filtering (i.e., masking) to select a subset of the dataframe.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}223}]:} \PY{c+c1}{\PYZsh{}code}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{act\PYZus{}data\PYZus{}18}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sat\PYZus{}data\PYZus{}18}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+    act\_state act\_participation  act\_english  act\_math  act\_reading  \textbackslash{}
+1     Alabama              100\%         18.9      18.4         19.7   
+2      Alaska               65\%         18.7      19.8         20.4   
+3     Arizona               62\%         18.6      19.8         20.1   
+4    Arkansas              100\%         18.9      19.0         19.7   
+5  California               31\%         22.5      22.7         23.1   
+
+   act\_science act\_composite  
+1         19.4          19.2  
+2         19.9          19.8  
+3         19.8          19.7  
+4         19.5          19.4  
+5         22.2          22.8  
+         State  Participation  Composite
+0      Alabama            100       19.1
+1     Arkansas            100       19.4
+2     Kentucky            100       20.2
+3    Louisiana            100       19.2
+4  Mississippi            100       18.6
+    sat\_state sat\_participation  sat\_read\_write  sat\_math  sat\_total
+0     Alabama                5\%             593       572       1165
+1      Alaska               38\%             547       533       1080
+2     Arizona               30\%             563       553       1116
+3    Arkansas                3\%             614       594       1208
+4  California               53\%             531       524       1055
+        State  Unnamed: 1  Total
+0     Alabama           5   1169
+1      Alaska         533   1080
+2     Arizona         553   1116
+3    Arkansas         594   1208
+4  California          60   1076
+
+    \end{Verbatim}
+
+    \subsection{Visualize the data}\label{visualize-the-data}
+
+There's not a magic bullet recommendation for the right number of plots
+to understand a given dataset, but visualizing your data is
+\emph{always} a good idea. Not only does it allow you to quickly convey
+your findings (even if you have a non-technical audience), it will often
+reveal trends in your data that escaped you when you were looking only
+at numbers.
+
+Some recommendations on plotting: - Plots have titles - Plots have axis
+labels - Plots have appropriate tick labels - All text is legible in a
+plot - Plots demonstrate meaningful and valid relationships - Plots are
+interpreted to aid understanding
+
+There is such a thing as too many plots, and there are a \emph{lot} of
+bad plots. You might make some! (But hopefully not with the guided
+prompts below).
+
+    \paragraph{\texorpdfstring{Use Seaborn's heatmap with pandas
+\texttt{.corr()} to visualize correlations between all numeric
+features}{Use Seaborn's heatmap with pandas .corr() to visualize correlations between all numeric features}}\label{use-seaborns-heatmap-with-pandas-.corr-to-visualize-correlations-between-all-numeric-features}
+
+Heatmaps are generally not appropriate for presentations, and should
+often be excluded from reports as they can be visually overwhelming.
+\textbf{However}, they can be extremely useful in identify relationships
+of potential interest (as well as identifying potential collinearity
+before modeling).
+
+\emph{example}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sns.heatmap(df.corr())}
+\end{Highlighting}
+\end{Shaded}
+
+Please take time to format your output, adding a title. Look through
+some of the additional arguments and options. (Axis labels aren't really
+necessary, as long as the title is informative).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}224}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}224}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x110ef2cc0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_64_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Define a custom function to subplot
+histograms}\label{define-a-custom-function-to-subplot-histograms}
+
+We have data for two tests for two years. We only have composite (and
+not subtest scores) for the 2018 ACT. We should write a function that
+will take the names of 2+ columns and subplot histograms. While you can
+use pandas plotting or Seaborn here, matplotlib gives you greater
+control over all aspects of your plots.
+
+\href{https://matplotlib.org/users/pyplot_tutorial.html\#working-with-multiple-figures-and-axes}{Helpful
+Link for Plotting Multiple Figures}
+
+Here's some starter code:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{def} \PY{n+nf}{subplot\PYZus{}histograms}\PY{p}{(}\PY{n}{dataframe}\PY{p}{,} \PY{n}{list\PYZus{}of\PYZus{}columns}\PY{p}{,} \PY{n}{list\PYZus{}of\PYZus{}titles}\PY{p}{,} \PY{n}{list\PYZus{}of\PYZus{}xlabels}\PY{p}{)}\PY{p}{:}
+            \PY{n}{nrows} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{list\PYZus{}of\PYZus{}columns}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Makes sure you have enough rows}
+            \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{n}{nrows}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} \PY{c+c1}{\PYZsh{} You\PYZsq{}ll want to specify your figsize}
+            \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Ravel turns a matrix into a vector, which is easier to iterate}
+            \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{column} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{list\PYZus{}of\PYZus{}columns}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} Gives us an index value to get into all our lists}
+                \PY{n}{ax}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{dataframe}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} feel free to add more settings}
+                \PY{c+c1}{\PYZsh{} Set titles, labels, etc here for each subplot}
+\end{Verbatim}
+
+
+    \paragraph{Plot and interpret
+histograms}\label{plot-and-interpret-histograms}
+
+For each of the following: - Participation rates for SAT \& ACT - Math
+scores for SAT \& ACT - Reading/verbal scores for SAT \& ACT
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}229}]:} \PY{c+c1}{\PYZsh{} Code}
+          \PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}229}]:} array([[<matplotlib.axes.\_subplots.AxesSubplot object at 0x119aed198>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119953d68>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119b719b0>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x119b9ff60>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119bdc550>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119c0cb00>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x119c4b0f0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119c7a6d8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119c7a710>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x119ceb240>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119d187f0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x119d4fda0>]],
+                dtype=object)
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_68_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Plot and interpret scatter
+plots}\label{plot-and-interpret-scatter-plots}
+
+For each of the following: - SAT vs. ACT math scores for 2017 - SAT vs.
+ACT verbal/reading scores for 2017 - SAT vs. ACT total/composite scores
+for 2017 - Total scores for SAT 2017 vs. 2018 - Composite scores for ACT
+2017 vs. 2018
+
+Plot the two variables against each other using matplotlib or Seaborn
+
+Your plots should show: - Two clearly labeled axes - A proper title -
+Using colors and symbols that are clear and unmistakable
+
+\textbf{Feel free to write a custom function, and subplot if you'd
+like.} Functions save both time and space.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}232}]:} \PY{c+c1}{\PYZsh{} Code}
+\end{Verbatim}
+
+
+    \paragraph{Plot and interpret
+boxplots}\label{plot-and-interpret-boxplots}
+
+For each numeric variable in the dataframe create a boxplot using
+Seaborn. Boxplots demonstrate central tendency and spread in variables.
+In a certain sense, these are somewhat redundant with histograms, but
+you may be better able to identify clear outliers or differences in IQR,
+etc.
+
+Multiple values can be plotted to a single boxplot as long as they are
+of the same relative scale (meaning they have similar min/max values).
+
+Each boxplot should: - Only include variables of a similar scale - Have
+clear labels for each variable - Have appropriate titles and labels
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}233}]:} \PY{c+c1}{\PYZsh{} Code}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{sat\PYZus{}act\PYZus{}merge\PYZus{}17\PYZus{}18}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Feel free to do additional plots
+below}\label{feel-free-to-do-additional-plots-below}
+
+\emph{(do research and choose your own chart types \& variables)}
+
+Are there any additional trends or relationships you haven't explored?
+Was there something interesting you saw that you'd like to dive further
+into? It's likely that there are a few more plots you might want to
+generate to support your narrative and recommendations that you are
+building toward. \textbf{As always, make sure you're interpreting your
+plots as you go}.
+
+    \paragraph{(Optional): Using Tableau, create a choropleth map for each
+variable using a map of the
+US.}\label{optional-using-tableau-create-a-choropleth-map-for-each-variable-using-a-map-of-the-us.}
+
+Save this plot as an image file in an images directory, provide a
+relative path, and insert the image into notebook in markdown.
+
+    \subsection{Descriptive and Inferential
+Statistics}\label{descriptive-and-inferential-statistics}
+
+    \paragraph{Summarizing Distributions}\label{summarizing-distributions}
+
+Above, we used pandas \texttt{describe} to provide quick summary
+statistics of our numeric columns. We also demonstrated many visual
+relationships.
+
+As data scientists, having a complete understanding of data is
+imperative prior to modeling.
+
+While we will continue to build our analytic tools, we know that
+measures of \emph{central tendency}, \emph{spread}, and
+\emph{shape/skewness} provide a quick summary of distributions.
+
+For each variable in your data, summarize the underlying distributions
+(in words \& statistics) - Be thorough in your verbal description of
+these distributions. - Be sure to back up these summaries with
+statistics.
+
+    Answers:
+
+    \paragraph{We generally assuming that data we sample from a population
+will be normally distributed. Do we observe this
+trend?}\label{we-generally-assuming-that-data-we-sample-from-a-population-will-be-normally-distributed.-do-we-observe-this-trend}
+
+    Answer:
+
+    Does This Assumption Hold for: - Math - Reading - Rates Explain your
+answers for each distribution and how you think this will affect
+estimates made from these data.
+
+    Answer:
+
+    \paragraph{Estimate Limits of Data}\label{estimate-limits-of-data}
+
+Suppose we only seek to understand the relationship between SAT and ACT
+participation rates in 2017.
+
+\subparagraph{Does it make sense to conduct statistical inference given
+these data
+specifically?}\label{does-it-make-sense-to-conduct-statistical-inference-given-these-data-specifically}
+
+Why or why not?
+
+\emph{(think about granularity, aggregation, the relationships between
+populations size \& rates...consider the actually populations these data
+describe in answering this question)}
+
+    Answer:
+
+    \subparagraph{\texorpdfstring{Is it appropriate to compare \emph{these}
+specific SAT and ACT math
+scores?}{Is it appropriate to compare these specific SAT and ACT math scores?}}\label{is-it-appropriate-to-compare-these-specific-sat-and-act-math-scores}
+
+Why or why not?
+
+    Answer:
+
+    \paragraph{Statistical Evaluation of
+Distributions}\label{statistical-evaluation-of-distributions}
+
+\textbf{If you feel it's appropriate}, using methods we discussed in
+class, run hypothesis tests to compare variables of interest in our
+dataset.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Code:}
+\end{Verbatim}
+
+
+    \subsection{Outside Research}\label{outside-research}
+
+    Based upon your observations, choose \textbf{three} states that
+demonstrate interesting trends in their SAT and/or ACT participation
+rates. Spend some time doing outside research on state policies that
+might influence these rates, and summarize your findings below.
+\textbf{Feel free to go back and create new plots that highlight these
+states of interest}. If you bring in any outside tables or charts, make
+sure you are explicit about having borrowed them. If you quote any text,
+make sure that it renders as being quoted. (Make sure that you cite your
+sources -\/- check with you local instructor for citation preferences).
+
+    \subsection{Conclusions and
+Recommendations}\label{conclusions-and-recommendations}
+
+    Based on your exploration of the data, what are you key takeaways and
+recommendations? Choose one state with a lower participation rate and
+provide a suggestion for how the College Board might increase
+participation amongst graduating seniors in this state. Are there
+additional data you desire that would better inform your investigations?
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
